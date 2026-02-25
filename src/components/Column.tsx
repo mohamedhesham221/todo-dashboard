@@ -2,9 +2,11 @@ import { Box, Stack, Typography } from "@mui/material";
 import AddTaskButton from "./AddTaskButton";
 import Task from "./Task";
 import type { TaskType, ColumnProps } from "../types/types";
+import { useTasksStore } from "../store/useTasksStore";
 
 
 function Column({ title, color, tasksCounts, tasks, column }: ColumnProps) {
+  const { moveTask } = useTasksStore();
   return (
     <Box
       sx={{
@@ -13,6 +15,11 @@ function Column({ title, color, tasksCounts, tasks, column }: ColumnProps) {
         width: "20%",
         padding: "15px",
         borderRadius: "5px",
+      }}
+      onDragOver={(e) => e.preventDefault()}
+      onDrop={(e) => {
+        const taskId = e.dataTransfer.getData("taskId");
+        moveTask(taskId, column);
       }}
     >
       <Stack

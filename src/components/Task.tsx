@@ -28,7 +28,9 @@ function Task({ id, title, description, priority, column }: TaskProps) {
   const handleClose = () => setOpen(false);
   const task = { id, title, description, priority, column };
   return (
-    <Card sx={{ backgroundColor: "#fff" }}>
+    <Card sx={{ backgroundColor: "#fff", cursor: 'grab' }} draggable onDragStart={(e) => {
+    e.dataTransfer.setData("taskId", id);
+  }}>
       <CardContent>
         <Typography gutterBottom sx={{ color: "text.secondary", fontSize: 14 }}>
           {title}
