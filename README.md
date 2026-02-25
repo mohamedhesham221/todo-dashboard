@@ -23,6 +23,7 @@ The app allows users to manage tasks across multiple columns with full CRUD func
     - `In Review`
     - `Done`
   - Tasks automatically appear in the corresponding column based on their `column` property.
+  - Tasks able to drag/drop in each column.
 
 - **State Management**
   - Managed with **Zustand**.
