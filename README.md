@@ -1,73 +1,57 @@
-# React + TypeScript + Vite
+# Task Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple task management (Kanban-style) application built with **React**, **TypeScript**, **Zustand**, and **React Query**.  
+The app allows users to manage tasks across multiple columns with full CRUD functionality and search/filtering support.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- **CRUD Operations**
+  - **Add Task**: Create new tasks dynamically.
+  - **Update Task**: Edit existing tasks using the same modal as Add.
+  - **Delete Task**: Remove tasks easily with immediate UI update.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Search & Filtering**
+  - Filter tasks by title or description using the search bar.
+  - Works across all columns (`Backlog`, `In Progress`, `Review`, `Done`).
 
-## Expanding the ESLint configuration
+- **Columns**
+  - Tasks are organized in four columns representing their status:
+    - `Backlog`
+    - `In Progress`
+    - `In Review`
+    - `Done`
+  - Tasks automatically appear in the corresponding column based on their `column` property.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **State Management**
+  - Managed with **Zustand**.
+  - Task data is persisted in local storage using `zustand/persist`.
+  - `getFiltered` helper provides derived state for search filtering.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Data Fetching**
+  - Initial tasks are fetched from a JSON server using **React Query**.
+  - Supports server sync and hydration on app load.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Tech Stack
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **React** – UI library  
+- **TypeScript** – Type safety for components and store  
+- **Zustand** – Lightweight state management with persistence  
+- **React Query** – Async data fetching and caching  
+- **MUI (Material UI)** – UI components for forms, buttons, modals, and layout  
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Usage
+
+1. Install dependencies:
+
+```bash
+npm install
+json-server --watch db.json --port 4000
+npm run dev
+open browser <http://localhost:5173>
 ```
