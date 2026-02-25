@@ -37,17 +37,23 @@ The app allows users to manage tasks across multiple columns with full CRUD func
 
 ## Tech Stack
 
-- **React** – UI library  
-- **TypeScript** – Type safety for components and store  
-- **Zustand** – Lightweight state management with persistence  
-- **React Query** – Async data fetching and caching  
-- **MUI (Material UI)** – UI components for forms, buttons, modals, and layout  
+- **React** – UI library
+- **TypeScript** – Type safety for components and store
+- **Zustand** – Lightweight state management with persistence
+- **React Query** – Async data fetching and caching
+- **MUI (Material UI)** – UI components for forms, buttons, modals, and layout
 
 ---
 
-## Usage
 
-1. Install dependencies:
+### Setup Instructions
+
+```bash
+git clone https://github.com/mohamedhesham221/todo-dashboard.git
+cd todo-dashboard
+```
+
+### Install dependencies
 
 ```bash
 npm install
