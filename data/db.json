@@ -1,0 +1,60 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Design homepage",
+      "description": "Create hero, features, and footer layout",
+      "column": "backlog",
+      "priority": "high"
+    },
+    {
+      "id": 2,
+      "title": "Setup project structure",
+      "description": "Configure folders, routing, and global styles",
+      "column": "backlog",
+      "priority": "low"
+    },
+    {
+      "id": 3,
+      "title": "Build login form",
+      "description": "Add validation and error messages",
+      "column": "progress",
+      "priority": "medium"
+    },
+    {
+      "id": 4,
+      "title": "Integrate API for tasks",
+      "description": "Fetch and display tasks list",
+      "column": "progress",
+      "priority": "high"
+    },
+    {
+      "id": 5,
+      "title": "Create task card component",
+      "description": "Reusable card with edit/delete actions",
+      "column": "review",
+      "priority": "low"
+    },
+    {
+      "id": 6,
+      "title": "Responsive navbar",
+      "description": "Make navbar mobile friendly",
+      "column": "review",
+      "priority": "medium"
+    },
+    {
+      "id": 7,
+      "title": "Dark mode toggle",
+      "description": "Switch theme with local storage",
+      "column": "done",
+      "priority": "medium"
+    },
+    {
+      "id": 8,
+      "title": "Deploy app",
+      "description": "Deploy project to hosting platform",
+      "column": "done",
+      "priority": "high"
+    }
+  ]
+}

@@ -1,13 +1,9 @@
 import { Box, Stack, Typography } from "@mui/material";
 import AddTaskButton from "./AddTaskButton";
 import Task from "./Task";
+import type { TaskType, ColumnProps } from "../types/types";
 
-type ColumnProps = {
-  title: string;
-  color: string;
-  tasksCounts?: number;
-};
-function Column({ title, color, tasksCounts }: ColumnProps) {
+function Column({ title, color, tasksCounts, tasks }: ColumnProps) {
   return (
     <Box
       sx={{
@@ -41,17 +37,26 @@ function Column({ title, color, tasksCounts }: ColumnProps) {
           sx={{
             backgroundColor: "#EEEEEE",
             borderRadius: "100%",
-            padding:"4px",
-            lineHeight: 1
+            padding: "4px",
+            lineHeight: 1,
           }}
         >
           {tasksCounts}
         </Typography>
       </Stack>
-      <Stack direction="column" spacing={5}>
-        <Task title="API integration" priority="low" description="do some work for this task" color="#EEEEEE"/>
+      <Stack direction="column" spacing={3} sx={{ marginTop: "15px" }}>
+        {// map tasks here
+        tasks?.map((task: TaskType) => (
+          <Task
+            key={task.id}
+            title={task.title}
+            priority={task.priority}
+            description={task.description}
+            color="#EEEEEE"
+          />
+        ))}
       </Stack>
-        <AddTaskButton />
+      <AddTaskButton />
     </Box>
   );
 }

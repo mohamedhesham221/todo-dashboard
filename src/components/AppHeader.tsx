@@ -1,55 +1,14 @@
-import { styled } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import SearchIcon from "@mui/icons-material/Search";
 import { Stack } from "@mui/material";
+import SearchBar from "./SearchBar";
+import { useTasksStore } from "../store/useTasksStore";
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: "#d8d8d8",
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(1),
-    width: "auto",
-  },
-}));
-
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: " #44444E",
-  width: "100%",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
-    "&::placeholder": {
-      color: "#44444E",
-      opacity: 1,
-    },
-  },
-}));
 function AppHeader() {
+  const {tasks} = useTasksStore()
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
@@ -91,24 +50,12 @@ function AppHeader() {
                   component="div"
                   sx={{ color: "#4f4f53" }}
                 >
-                  10 Tasks
+                  {tasks.length} Tasks
                 </Typography>
               </Box>
             </Stack>
           </Box>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon
-                sx={{
-                  color: "#44444E",
-                }}
-              />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search tasks…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
+          <SearchBar />
         </Toolbar>
       </AppBar>
     </Box>
