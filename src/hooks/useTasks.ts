@@ -4,15 +4,17 @@ import React from "react";
 import { useTasksStore } from "../store/useTasksStore";
 export function useTasks() {
   const { data, isLoading, error } = useFetch();
-  const { query, setQuery, setTasks } = useTasksStore();
+  const { query, setQuery, setTasks, tasks } = useTasksStore();
+  // Update the tasks in the store when data is fetched
   React.useEffect(() => {
     if (data) {
       setTasks(data);
     }
   }, [data, setTasks]);
+// Filter tasks based on the search query
+  const filteredData = query ? useTasksStore.getState().getFiltered() : tasks;
 
-  const filteredData = query ? useTasksStore.getState().getFiltered() : data;
-
+  // Separate tasks into their respective columns
   const backlog =
     filteredData?.filter((task: TaskType) => task.column === "backlog") || [];
   const inProgress =

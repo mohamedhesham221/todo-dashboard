@@ -1,5 +1,6 @@
 import {useQuery} from "@tanstack/react-query";
 
+// Custom hook to fetch data from the API
 const fetchData = async (url: string) => {
     try {
       const response = await fetch(url);
@@ -13,10 +14,11 @@ const fetchData = async (url: string) => {
       throw error;
     }
   };
+  // Custom hook to use the fetch function with React Query
 export function useFetch() {
     const { data, error, isLoading } = useQuery({
         queryKey: ['tasks'],
-        queryFn: () => fetchData('http://localhost:3000/tasks'),
+        queryFn: () => fetchData('http://localhost:4000/tasks'),
     });
 
   return { data, error, isLoading };

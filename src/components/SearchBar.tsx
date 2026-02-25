@@ -46,6 +46,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
+
 function SearchBar() {
   const { setQuery, query } = useTasksStore();
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {

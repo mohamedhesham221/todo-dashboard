@@ -3,7 +3,8 @@ import AddTaskButton from "./AddTaskButton";
 import Task from "./Task";
 import type { TaskType, ColumnProps } from "../types/types";
 
-function Column({ title, color, tasksCounts, tasks }: ColumnProps) {
+
+function Column({ title, color, tasksCounts, tasks, column }: ColumnProps) {
   return (
     <Box
       sx={{
@@ -45,18 +46,20 @@ function Column({ title, color, tasksCounts, tasks }: ColumnProps) {
         </Typography>
       </Stack>
       <Stack direction="column" spacing={3} sx={{ marginTop: "15px" }}>
-        {// map tasks here
+        { // Render tasks in the column
         tasks?.map((task: TaskType) => (
           <Task
             key={task.id}
+            id={task.id}
             title={task.title}
             priority={task.priority}
             description={task.description}
             color="#EEEEEE"
+            column={column}
           />
         ))}
       </Stack>
-      <AddTaskButton />
+      <AddTaskButton column={column} />
     </Box>
   );
 }

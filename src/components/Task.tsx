@@ -7,16 +7,26 @@ import {
   Button,
 } from "@mui/material";
 
+import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Edit } from "@mui/icons-material";
-
+import { useTasksStore } from "../store/useTasksStore";
+import TaskModal from "./TaskModal";
+import type { ColumnType } from "../types/types";
 type TaskProps = {
+  id: string;
   title: string;
   description: string;
   priority: "low" | "medium" | "high";
   color: string;
+  column: ColumnType;
 };
-function Task({ title, description, priority }: TaskProps) {
+function Task({ id, title, description, priority, column }: TaskProps) {
+  const { deleteTask } = useTasksStore();
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const task = { id, title, description, priority, column };
   return (
     <Card sx={{ backgroundColor: "#fff" }}>
       <CardContent>
@@ -46,6 +56,7 @@ function Task({ title, description, priority }: TaskProps) {
       <CardActions>
         <Button
           variant="outlined"
+          onClick={() => deleteTask(id)}
           startIcon={<DeleteIcon />}
           sx={{
             color: "#d44545",
@@ -57,6 +68,9 @@ function Task({ title, description, priority }: TaskProps) {
         </Button>
         <Button
           variant="outlined"
+          onClick={() => {
+            handleOpen();
+          }}
           startIcon={<Edit />}
           sx={{
             borderColor: "#57564f5d",
@@ -66,6 +80,12 @@ function Task({ title, description, priority }: TaskProps) {
           Edit
         </Button>
       </CardActions>
+      <TaskModal
+        open={open}
+        handleClose={handleClose}
+        column={column}
+        task={task}
+      />
     </Card>
   );
 }
